@@ -6,11 +6,11 @@
             id: "icao24",
             dataType: tableau.dataTypeEnum.string
         }, {
-            id: "longitude",
+            id: "long",
             alias: "longitude",
             dataType: tableau.dataTypeEnum.float
         }, {
-            id: "latitude",
+            id: "lat",
             alias: "latitude",
             dataType: tableau.dataTypeEnum.float
         }];
@@ -31,10 +31,11 @@
     
             // Iterate over the JSON object
             for (var i = 0, len = feat.length; i < len; i++) {
+                var temp = feat[i];
                 tableData.push({
-                    "id": feat[i].id,
-                    "mag": feat[i].properties.mag,
-                    "title": feat[i].properties.title
+                    "icao": temp[0],
+                    "long": temp[5],
+                    "lat": temp[6]
                 });
             }
     
