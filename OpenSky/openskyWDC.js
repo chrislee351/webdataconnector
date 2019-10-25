@@ -4,6 +4,11 @@
     myConnector.getSchema = function (schemaCallback) {
         var cols = [{
             id: "icao24",
+            alias: "ICAO",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "callsign",
+            alias: "Call Sign",
             dataType: tableau.dataTypeEnum.string
         }, {
             id: "long",
@@ -13,7 +18,11 @@
             id: "lat",
             alias: "latitude",
             dataType: tableau.dataTypeEnum.float
-        }];
+        }, {
+            id: "baro_altitude",
+            alias: "Altitude",
+            dataType: tableau.dataTypeEnum.float
+        },];
 
         var tableSchema = {
             id: "openskyFeed",
@@ -31,11 +40,13 @@
     
             // Iterate over the JSON object
             for (var i = 0, len = feat.length; i < len; i++) {
-                var temp = feat[i];
+                var flight = feat[i];
                 tableData.push({
-                    "icao": temp[0],
-                    "long": temp[5],
-                    "lat": temp[6]
+                    "icao24": flight[0],
+                    "callsign": flight[1],
+                    "long": flight[5],
+                    "lat": flight[6],
+                    "baro_altitude": flight[7]
                 });
             }
     
